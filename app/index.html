@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru" ng-app="testAssignment">
+
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        
+        <title>Test Assignment</title>
+                
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> 
+        <link href="styles/mystyles.css" rel="stylesheet">
+
+    </head>
+    
+    
+    <body>
+        
+        <header class="jumbotron hidden-xs">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>Test assignment</h4>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="container" id="mainContent" ng-controller="InputController">
+            
+            <div class="row">
+                              
+                <div class="col-xs-12 col-md-5" id="chartdiv" ng-controller="ChartController" ng-if="showChart">
+                    <canvas id="bar" class="chart chart-bar" 
+                            chart-labels="labels" chart-series="series"
+                            chart-data="[formArray(series[0]), formArray(series[1]), formArray(series[2])]" width="400" height="300">
+                    </canvas>   
+                </div>
+                
+                <div class="col-xs-12 col-md-5" ng-if="!showChart">
+                    <p>{{message}}</p>
+                </div>
+                
+                <div class="col-xs-12 col-md-6 offset-md-1">
+                    <div class="card-group"> 
+                        
+                        <div class="card bg-light">
+                          <div class="card-header">
+                              <h4 class="card-title text-info">Val1</h4>
+                            </div>
+                          <div class="card-body">
+                            <h4 class="card-title">{{sumVal(1)}}</h4>
+                          </div>
+                        </div>
+
+                        <div class="card bg-light">
+                          <div class="card-header">
+                              <h4 class="card-title text-secondary">Val2</h4>
+                            </div>
+                          <div class="card-body">
+                            <h4 class="card-title">{{sumVal(2)}}</h4>
+                          </div>                
+                        </div>
+
+                        <div class="card bg-light" >
+                          <div class="card-header">
+                              <h4 class="card-title text-danger">Val3</h4>
+                            </div>
+                          <div class="card-body">
+                            <h4 class="card-title">{{sumVal(3)}}</h4>
+                          </div>                
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div> 
+            
+            <div class="row"> 
+                <div class="col-xs-12 table-responsive">
+                    
+                    <table class="table">
+                        <thead class="card-header">
+                            <tr>
+                                <th ng-repeat="(key, value) in data[0]">{{key}}</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="datapoint in data">
+                                <td><input id="date" type="text" ng-model="datapoint.date"></td>
+                                <td><input id="name" type="text" ng-model="datapoint.name"></td>
+                                <td><input id="val1" type="text" ng-model="datapoint.val1"></td>
+                                <td><input id="val2" type="text" ng-model="datapoint.val2"></td>
+                                <td><input id="val3" type="text" ng-model="datapoint.val3"></td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            
+        </div>
+              
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-resource.js"></script>
+        <script src="../node_modules/chart.js/dist/Chart.min.js"></script>
+        <script src="../node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+        <script src="scripts/app.js"></script>
+        
+    </body>
+    
+</html>
